@@ -27,6 +27,11 @@ public class BinaryTree {
         preOrderTraversal(n.right);
     }
 
+    /**
+     * First Visit Left
+     * Second Visit Root
+     * Third Visit Right
+     */
     public static void inOrderTraversal(Node n)
     {
         if (n == null) return;
@@ -35,6 +40,11 @@ public class BinaryTree {
         inOrderTraversal(n.right);
     }
 
+    /**
+     * First Visit Left
+     * Second Visit Right
+     * Third Visit Root
+     */
     public static void postOrderTraversal(Node n)
     {
         if (n == null) return;
