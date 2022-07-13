@@ -6,7 +6,7 @@ import java.util.List;
 public class CircularQueue
 {
     // 1. Store Element
-    private List<Integer> data;
+    private int[] data;
 
     private int pointerFront;
 
@@ -16,7 +16,7 @@ public class CircularQueue
 
     public CircularQueue(int sizeOfQueue)
     {
-        data = new ArrayList<Integer>(sizeOfQueue);
+        data = new int[sizeOfQueue];
         pointerBack = -1;
         pointerFront = -1;
         this.sizeOfQueue = sizeOfQueue;
@@ -38,7 +38,7 @@ public class CircularQueue
             throw new RuntimeException("xxx Could not output Front Value as The queue is Empty xxx");
         }
 
-        return data.get(pointerFront);
+        return data[pointerFront];
     }
 
     public int rear()
@@ -47,7 +47,7 @@ public class CircularQueue
             throw new RuntimeException("xxx Could not output Rear Value as The queue is Empty xxx");
         }
 
-        return data.get(pointerBack);
+        return data[pointerBack];
     }
 
     public boolean enQueue(int value)
@@ -57,15 +57,17 @@ public class CircularQueue
             return false;
         }
 
+        if (isEmpty()) {
+            System.out.println("xxx The queue is full xxx");
+
+            this.pointerFront = 0;
+        }
+
         System.out.println("^^^ Add to a queue ^^^");
 
+        pointerBack = (pointerBack + 1) % sizeOfQueue;
+        data[pointerBack] = value;
 
-        data.add(value);
-
-        if (pointerFront < 0) {
-            pointerFront++;
-        }
-        pointerBack++;
         return true;
     }
 
@@ -75,13 +77,16 @@ public class CircularQueue
             System.out.println("xxx Cannot remove the queue is Empty xxx");
             return false;
         }
+
         System.out.println("^^^ Removed from a queue ^^^");
 
-        pointerFront++;
-        if (pointerFront > pointerBack) {
+        if (pointerFront == pointerBack) {
             pointerFront = -1;
             pointerBack = -1;
+            return true;
         }
+
+        pointerFront = (pointerFront + 1) % sizeOfQueue;
         return true;
     }
 
@@ -92,11 +97,6 @@ public class CircularQueue
 
     public boolean isFull()
     {
-        return pointerBack - pointerFront >= this.sizeOfQueue - 1;
-    }
-
-    public int getSize()
-    {
-        return data.size();
+        return (pointerBack + 1) % sizeOfQueue == pointerFront;
     }
 }

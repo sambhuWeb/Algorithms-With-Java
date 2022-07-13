@@ -72,11 +72,11 @@ public class CircularQueueImplementation
     private static void output(CircularQueue cq)
     {
 //        System.out.println("Size of circular queue " + cq.getSize());
-//        System.out.println("First Pointer " + cq.frontPointer());
-//        System.out.println("Rear Pointer " + cq.rearPointer());
-//        System.out.println("First Item " + cq.front());
-//        System.out.println("Last Item " + cq.rear());
-//        System.out.println("Is Full " + cq.isFull());
-//        System.out.println("-----------------------------");
+        System.out.println("First Pointer " + cq.frontPointer());
+        System.out.println("Rear Pointer " + cq.rearPointer());
+        System.out.println("First Item " + cq.front());
+        System.out.println("Last Item " + cq.rear());
+        System.out.println("Is Full " + cq.isFull());
+        System.out.println("-----------------------------");
     }
 }
